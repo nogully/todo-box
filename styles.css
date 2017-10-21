@@ -1,8 +1,9 @@
 * {
-  border-style: border-box 
+  border-style: border-box; 
 }
 body {
   font-size: 18px
+  background-color: pink;
 }
 .idea-card-wrap input {
   -webkit-appearance: textarea;
@@ -23,7 +24,7 @@ body {
   color: #cccccc;
 }
 .idea-card-wrap {
-  width: 320px;
+  width: 278px;
   padding: 20px;
   border: 1px dotted black;
 }
