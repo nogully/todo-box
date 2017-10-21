@@ -103,29 +103,29 @@ textarea {
   vertical-align: middle;
 }
 
-.idea-card #delete-button {
+.idea-card .delete-button {
   position: absolute;
   right: -5px;
   background: url(images/delete.svg) no-repeat;
 }
 
-.idea-card #delete-button:hover {
+.idea-card .delete-button:hover {
   background: url(images/delete-hover.svg) no-repeat;
 }
 
-.idea-card #upvote-button {
+.idea-card .upvote-button {
   background: url(images/upvote.svg) no-repeat;
 }
 
-.idea-card #upvote-button:hover {
+.idea-card .upvote-button:hover {
   background: url(images/upvote-hover.svg) no-repeat;
 }
 
-.idea-card #downvote-button {
+.idea-card .downvote-button {
   background: url(images/downvote.svg) no-repeat;
 }
 
-.idea-card #downvote-button:hover{
+.idea-card .downvote-button:hover{
   background: url(images/downvote-hover.svg) no-repeat;
 }
 
