@@ -1,3 +1,5 @@
+// Create Cards
+
 $('.save-button').on('click', function(event) {
   event.preventDefault();
   var titleInput = $('#title-input').val();
@@ -14,4 +16,13 @@ $('.save-button').on('click', function(event) {
     <h2>quality: <span class="rating">swill</span></h2>
     <hr>
     </article>`);
+  // ask about this
+  $('form')[0].reset();
+  // It works, but is it wrong?
   });
+
+// Delete Cards
+
+$('.idea-card-wrap').on('click', '#delete-button', function() {
+  $(this).parent('article').remove();
+})
