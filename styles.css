@@ -3,10 +3,41 @@
 }
 body {
   font-size: 18px
-  background-color: pink;
 }
+
+main {
+  background-color: #E5F3F2;
+  width: 320px;
+}
+
+h1 {
+  color: #6D6E71;
+}
+
+h1 > span {
+  color: #00A79D;
+}
+
+input,
+textarea {
+  display: block;
+  margin: auto;
+}
+
+.save-button {
+  border-style: none;
+  display: block;
+  background-color: #00A79D;
+  margin: auto;
+}
+
+.idea-card-wrap {
+  width: 278px;
+  padding: 20px;
+  border: 1px dotted black;
+}
+
 .idea-card-wrap input {
-  -webkit-appearance: textarea;
   border: 1px solid #D1D3D4;
   height: 1.5em;
   padding: 10px;

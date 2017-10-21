@@ -2,26 +2,27 @@
 <html>
 <head>
   <title>ideabox</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link href="styles.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab:700" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="../../jquery/jquery-3.2.1.min.js"><\/script>')</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-  <main class="idea-input-wrap">
-    <h1><span>idea</span>box</h1>
-    <form>
-      <input id="" type="text" placeholder="Title">
-      <label for=""></label>
-      <textarea id="" placeholder="Body"></textarea>
-      <label for=""></label>
-      <button type="submit">save</button>
-    </form>
-  </main>
-  <section class="idea-card-wrap">
-    <label for="search-box" hidden></label>
-    <input type="search" name="search-box" id="search-box" placeholder="Search">
+  <body>
+    <main class="idea-input-wrap">
+      <h1><span>idea</span>box</h1>
+      <form>
+        <input id="title-input" type="text" placeholder="Title">
+        <label for="title-input"></label>
+        <textarea id="idea-input" placeholder="Body"></textarea>
+        <label for="idea-input"></label>
+        <button type="submit" class="save-button">save</button>
+      </form>
+    </main>
+
+    <section class="idea-card-wrap">
+        <label for="search-box" hidden></label>
+        <input type="search" name="search-box" id="search-box" placeholder="Search">
 <!-- Card 1 -->
     <article class="idea-card">
       <h1 class="user-idea"></h1>
