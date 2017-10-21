@@ -4,6 +4,8 @@
   <title>ideabox</title>
   <link href="styles.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab:700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../../jquery/jquery-3.2.1.min.js"><\/script>')</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
   <body>
@@ -22,21 +24,18 @@
         <label for="search-box" hidden></label>
         <input type="search" name="search-box" id="search-box" placeholder="Search">
 <!-- Card 1 -->
-      <article class="idea-card">
-        <h1>Example Idea 1</h1>
-        <label for="delete-button" hidden></label>
-        <button id="delete-button">
-        </button>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <label for="upvote-button" hidden></label>
-        <button id="upvote-button">
-        </button>
-        <label for="downvote-button" hidden></label>
-        <button id="downvote-button">
-        </button>
-        <h2>quality: <span class="rating">swill</span></h2>
-        <hr>
-      </article>
+    <article class="idea-card">
+      <h1 class="user-idea"></h1>
+      <label for="delete-button" hidden></label>
+      <button id="delete-button"></button>
+      <p class="user-idea-details"></p>
+      <label for="upvote-button" hidden></label>
+      <button id="upvote-button"></button>
+      <label for="downvote-button" hidden></label>
+      <button id="downvote-button"></button>
+      <h2>quality: <span class="rating">swill</span></h2>
+      <hr>
+    </article>
 <!-- Card 2 -->
       <article class="idea-card">
         <h1>Example Idea 1</h1>

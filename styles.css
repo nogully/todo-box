@@ -1,8 +1,8 @@
 * {
-  border-style: border-box ;
+  border-style: border-box; 
 }
 body {
-  font-size: 18px;
+  font-size: 18px
 }
 
 main {
@@ -53,6 +53,11 @@ textarea {
   font-size: 1em;
   font-weight: bold;
   color: #cccccc;
+}
+.idea-card-wrap {
+  width: 278px;
+  padding: 20px;
+  border: 1px dotted black;
 }
 .idea-card {
   position: relative;
