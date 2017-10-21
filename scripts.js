@@ -28,40 +28,29 @@ $('.idea-card-wrap').on('click', '.delete-button', function() {
   $(this).parent('article').remove();
 })
 
-var ratingArray = ['Swill', 'Plausible', 'Genius'];
 
+$('.idea-card-wrap').on('click', '.upvote-button', function() {
+  var rating = $(this).siblings('h2').find('.rating');
+  console.log(rating)
+  if (rating.text() === 'Swill') {
+    rating.text('Plausible');
+  } else if (rating.text() === 'Plausible') {
+    rating.text('Genius');
+  };
+});
 
-var counter = 0;
-
-$('.idea-card-wrap').on('click', function(event) {
-  if ($(event.target).is('.upvote-button')) {
-    console.log('clicked upvote-button')
-    $(this).find('.downvote-button').removeAttr('disabled');
-    console.log(this)
-    if (counter === 2) {
-      console.log($(this), this)
-      $(this).find('.upvote-button').attr('disabled', true);
-    } else {
-      counter++;
-      $(this).find('.rating').text(ratingArray[counter]);
-      console.log(counter)
-      return counter;
-    };
-  } else if ($(event.target).is('.downvote-button')) {
-    $(this).find('.upvote-button').removeAttr('disabled');
-    if (counter === 0) {
-      $(this).find('.downvote-button').attr('disabled', true);
-    } else {
-      counter--;
-      $(this).find('.rating').text(ratingArray[counter]);
-      return counter;
-    };
+$('.idea-card-wrap').on('click', '.downvote-button', function() {
+  var rating = $(this).siblings('h2').find('.rating');
+  console.log(rating)
+  if (rating.text() === 'Genius') {
+    rating.text('Plausible');
+  } else if (rating.text() === 'Plausible') {
+    rating.text('Swill');
   };
 });
 
 
-// Individual ratings, disable hits all cards
-
+//FOR WHEN WE'RE USING LOCAL STORAGE???? Find Adam and Amy mod 3
 // $('.idea-card-wrap').on('click', '.upvote-button', function() {
 //   counter = 0
 //   console.log($(this).siblings('.downvote-button'))
@@ -88,27 +77,7 @@ $('.idea-card-wrap').on('click', function(event) {
 //   };
 // });
 
-// Ratings move YAY
+// var ratingArray = ['Swill', 'Plausible', 'Genius'];
 
 
-// $('.idea-card-wrap').on('click', '.upvote-button', function() {
-//   $('.downvote-button').removeAttr('disabled');
-//   if (counter === 2) {
-//     $(this).attr('disabled', true);
-//   } else {
-//     counter++;
-//     $('.rating').text(ratingArray[counter]);
-//     return counter;
-//   };
-// });
-
-// $('.idea-card-wrap').on('click', '.downvote-button', function() {
-//   $('.upvote-button').removeAttr('disabled');
-//   if (counter === 0) {
-//     $(this).attr('disabled', true);
-//   } else {
-//     counter--;
-//     $('.rating').text(ratingArray[counter]);
-//     return counter;
-//   };
-// });
+// var counter = 0;
