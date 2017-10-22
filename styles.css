@@ -2,17 +2,25 @@
   border-style: border-box; 
 }
 
+html {
+/*why does our html have any kind of value??*/
+}
+
 body {
   font-size: 18px
+  margin: 0px;
 }
 
 main {
-  background-color: #E5F3F2;
-  width: 320px;
+  padding: 3% 0%;
+  width: 100%;
 }
 
 h1 {
   color: #6D6E71;
+  font-family: "Roboto Slab", serif;
+  margin: 0px;
+  text-align: center;
 }
 
 h1 > span {
@@ -22,29 +30,68 @@ h1 > span {
 input,
 textarea {
   display: block;
-  margin: auto;
+  border: 1px solid #D1D3D4;
+  margin: 4% auto 3%;
+  padding: 2px 5px;
+  font-family: "Open Sans", sans-serif;
+  width: 87%;
+  max-width: 800px;
+  font-size: 1em;
+  color: #6D6E71;
+}
+
+input {
+  height: 2em;
+  
+}
+
+textarea {
+  height: 6rem;
+}
+
+.idea-input-wrap {
+  padding: 0px;
+}
+
+.blue-background {
+  background-color: #E5F3F2;
+  padding: 30px 0px 15px;
 }
 
 .save-button {
   border-style: none;
   display: block;
   background-color: #00A79D;
+  color: #FFF;
   margin: auto;
+  width: 89%;
+  max-width: 810px;
+  height: 2rem;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1em;
+}
+
+.save-button:hover {
+  background-color: #045E55;
 }
 
 .idea-card-wrap {
-  width: 278px;
+  /*width: 278px;*/
+  /*width: 100%;*/
   padding: 20px;
 }
 
 .idea-card-wrap input {
   border: 1px solid #D1D3D4;
-  height: 1.5em;
+  height: 2.5em;
   padding: 10px;
-  width: 100%;
+  /*width: 100%;*/
+  width: 93%;
+  max-width: 800px;
   margin-bottom: 20px;
   font-size: 1em;
   color: #6D6E71;
+  /*text-align: center;*/
 }
 
 .idea-card-wrap input:focus {

@@ -8,7 +8,7 @@ $('.save-button').on('click', function(event) {
     <h1 class="user-idea">${titleInput}</h1>
     <label for="delete-button" hidden></label>
     <button class="delete-button"></button>
-    <p class="user-idea-details">${ideaInput}</p>
+    <p class="user-idea-details" contenteditable="true">${ideaInput}</p>
     <label for="upvote-button" hidden></label>
     <button class="upvote-button"></button>
     <label for="downvote-button" hidden></label>
