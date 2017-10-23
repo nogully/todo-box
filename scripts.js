@@ -84,11 +84,15 @@ $('.save-button').on('click', function(event) {
   localStorage.setItem(dateNow, stringIdeaCard);
 });
 
-$('.idea-card-wrap').on('click', '.delete-button', function() {
-  $(this).parent('article').remove();
-})
+$('.idea-card-wrap').on('click', '.delete-button', function(event) {
+  deleteCard(event);
+});
 
-
-
+function deleteCard (event) {
+  var parentArticle = $(event.target).closest('article');
+  var id = parentArticle.prop('id');
+  parentArticle.remove();
+  localStorage.removeItem(id);
+};
 
 
