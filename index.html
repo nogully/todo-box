@@ -13,18 +13,14 @@
       <div class="blue-background">
         <h1><span>idea</span>box</h1>
         <form>
-          <input id="title-input" type="text" placeholder="Title">
-          <label for="title-input"></label>
-          <textarea id="idea-input" placeholder="Body"></textarea>
-          <label for="idea-input"></label>
+          <input id="title-input" type="text" placeholder="Title" aria-label="Enter Idea Title">
+          <textarea id="idea-input" placeholder="Body" aria-label="Enter Idea"></textarea>
           <button type="submit" class="save-button">save</button>
       </div>
-        <input type="search" name="search-box" id="search-box" placeholder="Search">
+        <input type="search" name="search-box" id="search-box" placeholder="Search" aria-label="Search Existing Ideas">
       </form>
     </main>
     <section class="idea-card-wrap">
-      <label for="search-box" hidden></label>
-      <!-- <input type="search" name="search-box" id="search-box" placeholder="Search"> -->
     </section>
     <script src="scripts.js" type="text/javascript"></script>
   </body>
