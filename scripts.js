@@ -31,8 +31,8 @@ $('.idea-card-wrap').on('click', '.downvote-button', function() {
   } else {
     parsedTheObject.counter--;
     $(this).siblings('h2').find('.rating').text(ratingArray[parsedTheObject.counter]);
-  var stringifiedTheObject = JSON.stringify(parsedTheObject);
-  localStorage.setItem(clickedCardId, stringifiedTheObject);
+    var stringifiedTheObject = JSON.stringify(parsedTheObject);
+    localStorage.setItem(clickedCardId, stringifiedTheObject);
   };
 });
 
@@ -77,3 +77,8 @@ $('.save-button').on('click', function(event) {
 $('.idea-card-wrap').on('click', '.delete-button', function() {
   $(this).parent('article').remove();
 })
+
+
+
+
+
