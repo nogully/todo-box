@@ -41,8 +41,8 @@ $('.idea-card-wrap').on('click', '.downvote-button', function() {
   } else {
     parsedTheObject.counter--;
     $(this).siblings('h2').find('.rating').text(ratingArray[parsedTheObject.counter]);
-  var stringifiedTheObject = JSON.stringify(parsedTheObject);
-  localStorage.setItem(clickedCardId, stringifiedTheObject);
+    var stringifiedTheObject = JSON.stringify(parsedTheObject);
+    localStorage.setItem(clickedCardId, stringifiedTheObject);
   };
 });
 
@@ -84,6 +84,15 @@ $('.save-button').on('click', function(event) {
   localStorage.setItem(dateNow, stringIdeaCard);
 });
 
-$('.idea-card-wrap').on('click', '.delete-button', function() {
-  $(this).parent('article').remove();
-})
+$('.idea-card-wrap').on('click', '.delete-button', function(event) {
+  deleteCard(event);
+});
+
+function deleteCard (event) {
+  var parentArticle = $(event.target).closest('article');
+  var id = parentArticle.prop('id');
+  parentArticle.remove();
+  localStorage.removeItem(id);
+};
+
+
