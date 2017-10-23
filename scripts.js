@@ -6,10 +6,19 @@ var IdeaCard = function(title, idea, id, quality) {
   this.counter = 0;
 };
 
+// function getObjectId() {
+//   return JSON.parse(localStorage.getItem($(this).parent('article').attr('id')))
+// }
+
 $('.idea-card-wrap').on('click', '.upvote-button', function() {
   var clickedCardId = $(this).parent('article').attr('id');
+  console.log($(this).parent('article').attr('id'));
   var theObject = localStorage.getItem(clickedCardId);
   var parsedTheObject = JSON.parse(theObject);
+  // var parsedTheObject = JSON.parse(localStorage.getItem($(this).parent('article').attr('id')));
+
+
+  // var theThing = JSON.parse(localStorage.getItem($(this).parent('article').attr('id')))
   $(this).siblings('.downvote-button').removeAttr('disabled');
   if (parsedTheObject.counter === 2) {
     $(this).attr('disabled', true);
@@ -20,6 +29,7 @@ $('.idea-card-wrap').on('click', '.upvote-button', function() {
     localStorage.setItem(clickedCardId, stringifiedTheObject);
   };
 });
+
 
 $('.idea-card-wrap').on('click', '.downvote-button', function() {
   var clickedCardId = $(this).parent('article').attr('id');
