@@ -42,13 +42,10 @@ $(document).ready(function() {
   var parsedObject = JSON.parse(retrievedObject);
   $('.idea-card-wrap').prepend(`<article id="${parsedObject.id}" class="idea-card">
     <h1 class="user-idea">${parsedObject.title}</h1>
-    <label for="delete-button" hidden></label>
-    <button class="delete-button"></button>
+    <button class="delete-button" aria-label="Delete Button"></button>
     <p class="user-idea-details" contenteditable="true">${parsedObject.idea}</p>
-    <label for="upvote-button" hidden></label>
-    <button class="upvote-button"></button>
-    <label for="downvote-button" hidden></label>
-    <button class="downvote-button"></button>
+    <button class="upvote-button" aria-label="upvote button"></button>
+    <button class="downvote-button" aria-label="downvote button"></button>
     <h2>quality: <span class="rating">${ratingArray[parsedObject.counter]}</span></h2>
     <hr>
     </article>`);
@@ -62,13 +59,10 @@ $('.save-button').on('click', function(event) {
   var dateNow = Date.now();
   $('.idea-card-wrap').prepend(`<article id="${dateNow}" class="idea-card">
     <h1 class="user-idea">${titleInput}</h1>
-    <label for="delete-button" hidden></label>
-    <button class="delete-button"></button>
+    <button class="delete-button" aria-label="Delete Button"></button>
     <p class="user-idea-details" contenteditable="true">${ideaInput}</p>
-    <label for="upvote-button" hidden></label>
-    <button class="upvote-button"></button>
-    <label for="downvote-button" hidden></label>
-    <button class="downvote-button"></button>
+    <button class="upvote-button" aria-label="upvote button"></button>
+    <button class="downvote-button" aria-label="downvote button"></button>
     <h2>quality: <span class="rating">Swill</span></h2>
     <hr>
     </article>`);
