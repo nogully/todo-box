@@ -78,6 +78,7 @@ $('.save-button').on('click', function(event) {
   // ask about this
   $('form')[0].reset();
   // It works, but is it wrong?
+  disableSaveButton();
   var ideaCard = new IdeaCard(titleInput, ideaInput, dateNow);
   var stringIdeaCard = JSON.stringify(ideaCard);
   localStorage.setItem(dateNow, stringIdeaCard);
@@ -124,4 +125,30 @@ $('.idea-card-wrap').on('blur', 'h1', function(event){
   persistTitleEdit(event);
 });
 
+function disableSaveButton() {
+  $('.save-button').attr('disabled', true)
+};
 
+function enableSaveButton() {
+  $('.save-button').removeAttr('disabled')
+};
+
+// Requires Both
+
+// $(window).on('keydown', function() {
+//   if (($('#title-input').val() !== '') && ($('#idea-input').val() !== '')){
+//     enableSaveButton();
+//   } else {
+//     disableSaveButton();
+//   };
+// });
+
+// Requires Only Title
+
+$(window).on('keydown', function() {
+  if ($('#title-input').val() !== ''){
+    enableSaveButton();
+  } else {
+    disableSaveButton();
+  };
+});

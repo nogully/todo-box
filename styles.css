@@ -5,6 +5,7 @@
 
 html {
 /*why does our html have any kind of value??*/
+/*Does it? I don't know that it needs any.*/
 }
 
 body {
@@ -39,19 +40,19 @@ textarea {
   width: 87%;
   max-width: 750px;
   font-size: 1em;
-
-  /*color: #6D6E71;*/
+/*This works to change the color of the input text.
+I'm not sure if that's what you wanted or not.*/
+  color: #6D6E71;
 }
 
-input:placeholder-shown,
-textarea:placeholder-shown {
+input:placeholder,
+textarea:placeholder {
   font-weight: 700;
   color: #EAEAEC;
 }
 
 input {
   height: 2em;
-  
 }
 
 textarea {
@@ -89,6 +90,10 @@ textarea:focus {
 
 .save-button:hover {
   background-color: #045E55;
+}
+
+.save-button:disabled {
+  background-color: #D1D2D4;
 }
 
 #search-box {
@@ -199,11 +204,9 @@ textarea:focus {
   background: url(images/downvote.svg) no-repeat;
 }
 
-.idea-card .downvote-button:hover{
+.idea-card .downvote-button:hover {
   background: url(images/downvote-hover.svg) no-repeat;
 }
-
-
 
 @media screen and (min-width: 650px) {
   h1 {
@@ -226,11 +229,7 @@ textarea:focus {
     width: 100%;
   }
 
-
 }
-
-
-
 
 /*Fonts*/
 /*
