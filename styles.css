@@ -3,10 +3,6 @@
   margin: 0;
 }
 
-html {
-/*why does our html have any kind of value??*/
-}
-
 body {
   font-size: 18px
   margin: 0;
@@ -39,19 +35,17 @@ textarea {
   width: 87%;
   max-width: 750px;
   font-size: 1em;
-
-  /*color: #6D6E71;*/
+  color: #6D6E71;
 }
 
-input:placeholder-shown,
-textarea:placeholder-shown {
+input::placeholder,
+textarea::placeholder {
   font-weight: 700;
-  color: #EAEAEC;
+  color: #D1D3D4;
 }
 
 input {
   height: 2em;
-  
 }
 
 textarea {
@@ -89,6 +83,10 @@ textarea:focus {
 
 .save-button:hover {
   background-color: #045E55;
+}
+
+.save-button:disabled {
+  background-color: #D1D2D4;
 }
 
 #search-box {
@@ -199,11 +197,9 @@ textarea:focus {
   background: url(images/downvote.svg) no-repeat;
 }
 
-.idea-card .downvote-button:hover{
+.idea-card .downvote-button:hover {
   background: url(images/downvote-hover.svg) no-repeat;
 }
-
-
 
 @media screen and (min-width: 650px) {
   h1 {
@@ -226,11 +222,7 @@ textarea:focus {
     width: 100%;
   }
 
-
 }
-
-
-
 
 /*Fonts*/
 /*
