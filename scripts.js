@@ -12,7 +12,6 @@ var IdeaCard = function(title, idea, id, quality) {
 
 $('.idea-card-wrap').on('click', '.upvote-button', function() {
   var clickedCardId = $(this).parent('article').attr('id');
-  console.log($(this).parent('article').attr('id'));
   var theObject = localStorage.getItem(clickedCardId);
   var parsedTheObject = JSON.parse(theObject);
   // var parsedTheObject = JSON.parse(localStorage.getItem($(this).parent('article').attr('id')));
@@ -51,7 +50,7 @@ $(document).ready(function() {
   var retrievedObject = localStorage.getItem(localStorage.key(i));
   var parsedObject = JSON.parse(retrievedObject);
   $('.idea-card-wrap').prepend(`<article id="${parsedObject.id}" class="idea-card">
-    <h1 class="user-idea">${parsedObject.title}</h1>
+    <h1 class="user-idea" contenteditable="true">${parsedObject.title}</h1>
     <button class="delete-button" aria-label="Delete Button"></button>
     <p class="user-idea-details" contenteditable="true">${parsedObject.idea}</p>
     <button class="upvote-button" aria-label="upvote button"></button>
@@ -68,7 +67,7 @@ $('.save-button').on('click', function(event) {
   var ideaInput = $('#idea-input').val();
   var dateNow = Date.now();
   $('.idea-card-wrap').prepend(`<article id="${dateNow}" class="idea-card">
-    <h1 class="user-idea">${titleInput}</h1>
+    <h1 class="user-idea" contenteditable="true">${titleInput}</h1>
     <button class="delete-button" aria-label="Delete Button"></button>
     <p class="user-idea-details" contenteditable="true">${ideaInput}</p>
     <button class="upvote-button" aria-label="upvote button"></button>
@@ -88,11 +87,41 @@ $('.idea-card-wrap').on('click', '.delete-button', function(event) {
   deleteCard(event);
 });
 
-function deleteCard (event) {
+function deleteCard(event) {
   var parentArticle = $(event.target).closest('article');
   var id = parentArticle.prop('id');
   parentArticle.remove();
   localStorage.removeItem(id);
 };
+
+function persistTextEdit(event) {
+  var parentArticle = $(event.target).closest('article');
+  var id = parentArticle.prop('id');
+  var newText = parentArticle.children('p').text();
+  var objectFromLocal = localStorage.getItem(id);
+  var object = JSON.parse(objectFromLocal);
+  object.idea = newText;
+  var objectString = JSON.stringify(object);
+  localStorage.setItem(id, objectString);
+};
+
+function persistTitleEdit(event) {
+  var parentArticle = $(event.target).closest('article');
+  var id = parentArticle.prop('id');
+  var newTitle = parentArticle.children('h1').text();
+  var objectFromLocal = localStorage.getItem(id);
+  var object = JSON.parse(objectFromLocal);
+  object.title = newTitle;
+  var objectString = JSON.stringify(object);
+  localStorage.setItem(id, objectString);
+};
+
+$('.idea-card-wrap').on('blur', 'p', function(event){
+  persistTextEdit(event);
+});
+
+$('.idea-card-wrap').on('blur', 'h1', function(event){
+  persistTitleEdit(event);
+});
 
 
