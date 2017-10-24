@@ -55,7 +55,9 @@ textarea {
 
 button:focus,
 input:focus,
-textarea:focus {
+textarea:focus,
+h1:focus,
+p:focus {
   outline: 0;
 }
 
