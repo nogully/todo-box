@@ -3,11 +3,6 @@
   margin: 0;
 }
 
-html {
-/*why does our html have any kind of value??*/
-/*Does it? I don't know that it needs any.*/
-}
-
 body {
   font-size: 18px
   margin: 0;
@@ -40,15 +35,13 @@ textarea {
   width: 87%;
   max-width: 750px;
   font-size: 1em;
-/*This works to change the color of the input text.
-I'm not sure if that's what you wanted or not.*/
   color: #6D6E71;
 }
 
-input:placeholder,
-textarea:placeholder {
+input::placeholder,
+textarea::placeholder {
   font-weight: 700;
-  color: #EAEAEC;
+  color: #D1D3D4;
 }
 
 input {

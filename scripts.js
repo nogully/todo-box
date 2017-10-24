@@ -133,20 +133,8 @@ function enableSaveButton() {
   $('.save-button').removeAttr('disabled')
 };
 
-// Requires Both
-
-// $(window).on('keydown', function() {
-//   if (($('#title-input').val() !== '') && ($('#idea-input').val() !== '')){
-//     enableSaveButton();
-//   } else {
-//     disableSaveButton();
-//   };
-// });
-
-// Requires Only Title
-
 $(window).on('keydown', function() {
-  if ($('#title-input').val() !== ''){
+  if (($('#title-input').val() !== '') || ($('#idea-input').val() !== '')){
     enableSaveButton();
   } else {
     disableSaveButton();
