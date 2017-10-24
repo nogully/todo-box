@@ -4,6 +4,7 @@ var IdeaCard = function(title, idea, id, quality) {
   this.idea = idea;
   this.id = id;
   this.counter = 0;
+  this.searchMatch = true;
 };
 
 // function getObjectId() {
@@ -140,3 +141,54 @@ $(window).on('keydown', function() {
     disableSaveButton();
   };
 });
+
+function arrayOfLocalStorage() {
+  var newArray = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    var retrievedObject = localStorage.getItem(localStorage.key(i));
+    var parsedObject = JSON.parse(retrievedObject);
+    newArray.push(parsedObject);
+  };
+  searchByTitle(newArray);
+  // searchByIdea(newArray);
+};
+
+
+
+function searchByTitle(newArray) {
+  newArray.filter(function(value,index){
+    var titleSearchResult = value.title.search($('#search-box').val()) !== -1;
+    var ideaSearchResult = value.idea.search($('#search-box').val()) !== -1;
+    searchFilterDisplay(titleSearchResult,ideaSearchResult);
+  });
+};
+
+// function searchByTitle(newArray) {
+//   newArray.filter(function(value){
+//     var titleSearchResult = value.title.search($('#search-box').val()) !== -1;
+//     searchFilterDisplay(titleSearchResult);
+//   });
+// };
+
+// function searchByIdea(newArray) {
+//   newArray.filter(function(value){
+//     var ideaSearchResult = value.idea.search($('#search-box').val()) !== -1;
+//     searchFilterDisplay(ideaSearchResult);
+//   });
+// };
+
+function searchFilterDisplay(searchResult1,searchResult2) {
+  if (searchResult1 === false && searchResult2 === false) {
+    // this.searchMatch = false;
+    // console.log(this.searchMatch);
+  };
+};
+
+$('#search-box').on('keyup', function(){
+  arrayOfLocalStorage();
+  // searchByTitle();
+})
+// function searchBar () {
+// }
+
+
