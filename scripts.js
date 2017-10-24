@@ -134,7 +134,7 @@ function enableSaveButton() {
 };
 
 $(window).on('keydown', function() {
-  if (($('#title-input').val() !== '') || ($('#idea-input').val() !== '')){
+  if (($('#title-input').val() !== '') && ($('#idea-input').val() !== '')){
     enableSaveButton();
   } else {
     disableSaveButton();
