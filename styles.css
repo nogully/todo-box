@@ -20,6 +20,7 @@ main {
 h1 {
   color: #6D6E71;
   font-family: "Roboto Slab", serif;
+  font-size: 3em;
   margin: 0px;
   text-align: center;
 }
@@ -38,7 +39,14 @@ textarea {
   width: 87%;
   max-width: 750px;
   font-size: 1em;
-  color: #6D6E71;
+
+  /*color: #6D6E71;*/
+}
+
+input:placeholder-shown,
+textarea:placeholder-shown {
+  font-weight: 700;
+  color: #EAEAEC;
 }
 
 input {
@@ -48,6 +56,7 @@ input {
 
 textarea {
   height: 6rem;
+  resize: none;
 }
 
 button:focus,
@@ -70,8 +79,8 @@ textarea:focus {
   display: block;
   background-color: #00A79D;
   color: #FFF;
-  margin: auto;
-  width: 89%;
+  margin: 2% auto 1%;
+  width: 88%;
   max-width: 760px;
   height: 2rem;
   font-family: "Open Sans", sans-serif;
@@ -80,6 +89,10 @@ textarea:focus {
 
 .save-button:hover {
   background-color: #045E55;
+}
+
+#search-box {
+  width: 88%;
 }
 
 .idea-card-wrap {
@@ -115,6 +128,8 @@ textarea:focus {
 
 .idea-card {
   position: relative;
+  margin: auto;
+  width: 94%;
 }
 
 .idea-card h1 {
@@ -141,8 +156,11 @@ textarea:focus {
 }
 
 .idea-card p {
+  margin: 15px 0px;
   font-size: 1em;
   color: #939598;
+  max-height: 120px;
+  overflow-y: scroll;
 }
 
 .idea-card hr {
@@ -195,12 +213,17 @@ textarea:focus {
   input,
   textarea {
     height: 2em;
+    margin: 2% auto 1%;
   }
 }
 
 @media screen and (min-width: 900px) {
   h1 {
     font-size: 5em;
+  }
+
+  .idea-card {
+    width: 100%;
   }
 
 
