@@ -1,3 +1,5 @@
+/*Body Styling*/
+
 * {
   border-style: border-box; 
   margin: 0;
@@ -13,6 +15,8 @@ main {
   width: 100%;
 }
 
+/*Input Area Styling*/
+
 h1 {
   color: #6D6E71;
   font-family: "Roboto Slab", serif;
@@ -27,15 +31,15 @@ h1 > span {
 
 input,
 textarea {
-  display: block;
   border: 1px solid #D1D3D4;
-  margin: 4% auto 3%;
-  padding: 2px 5px;
-  font-family: "Open Sans", sans-serif;
-  width: 87%;
-  max-width: 750px;
-  font-size: 1em;
   color: #6D6E71;
+  display: block;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1em;
+  margin: 4% auto 3%;
+  max-width: 750px;
+  padding: 2px 5px;
+  width: 87%;
 }
 
 input::placeholder,
@@ -71,16 +75,17 @@ p:focus {
 }
 
 .save-button {
-  border-style: none;
-  display: block;
   background-color: #00A79D;
+  border-style: none;
   color: #FFF;
-  margin: 2% auto 1%;
-  width: 88%;
-  max-width: 760px;
-  height: 2rem;
+  cursor: pointer;
+  display: block;
   font-family: "Open Sans", sans-serif;
   font-size: 1em;
+  height: 2rem;
+  margin: 2% auto 1%;
+  max-width: 760px;
+  width: 88%;
 }
 
 .save-button:hover {
@@ -89,31 +94,30 @@ p:focus {
 
 .save-button:disabled {
   background-color: #D1D2D4;
+  cursor: auto;
 }
 
 #search-box {
   width: 88%;
 }
 
+/*Idea Card Section Styling*/
+
 .idea-card-wrap {
-  /*width: 278px;*/
-  /*width: 100%;*/
-  padding: 20px;
-  max-width: 750px;
   margin: auto;
+  max-width: 750px;
+  padding: 20px;
 }
 
 .idea-card-wrap input {
   border: 1px solid #D1D3D4;
+  color: #6D6E71;
+  font-size: 1em;
   height: 2.5em;
   padding: 10px;
-  /*width: 100%;*/
-  width: 93%;
-  max-width: 750px;
   margin-bottom: 20px;
-  font-size: 1em;
-  color: #6D6E71;
-  /*text-align: center;*/
+  max-width: 750px;
+  width: 93%;
 }
 
 .idea-card-wrap input:focus {
@@ -121,14 +125,16 @@ p:focus {
 }
 
 .idea-card-wrap input::placeholder {
+  color: #cccccc;
   font-size: 1em;
   font-weight: bold;
-  color: #cccccc;
 }
 
+/*Idea Card Styling*/
+
 .idea-card {
-  position: relative;
   margin: auto;
+  position: relative;
   width: 94%;
 }
 
@@ -143,9 +149,9 @@ p:focus {
 .idea-card h1,
 .idea-card h2 {
   color: #6D6E71;
+  display: inline-block;
   font-family: 'Roboto Slab', serif;
   font-weight: 700;
-  display: inline-block;
   margin: 0px;
 }
 
@@ -156,9 +162,9 @@ p:focus {
 }
 
 .idea-card p {
-  margin: 15px 0px;
-  font-size: 1em;
   color: #939598;
+  font-size: 1em;
+  margin: 15px 0px;
   max-height: 120px;
   overflow-y: scroll;
 }
@@ -168,19 +174,21 @@ p:focus {
   margin: 20px 0;
 }
 
+/*Button Styling*/
+
 .idea-card button {
   border: none;
-  margin: 0 5px 0 0;
   cursor: pointer;
   height: 30px;
-  width: 30px;
+  margin: 0 5px 0 0;
   vertical-align: middle;
+  width: 30px;
 }
 
 .idea-card .delete-button {
+  background: url(images/delete.svg) no-repeat;
   position: absolute;
   right: -5px;
-  background: url(images/delete.svg) no-repeat;
 }
 
 .idea-card .delete-button:hover {
@@ -203,6 +211,8 @@ p:focus {
   background: url(images/downvote-hover.svg) no-repeat;
 }
 
+/*Media Queries*/
+
 @media screen and (min-width: 650px) {
   h1 {
     font-size: 3.3em;
@@ -223,14 +233,4 @@ p:focus {
   .idea-card {
     width: 100%;
   }
-
 }
-
-/*Fonts*/
-/*
-Roboto Slab - Font Weight 700
-Open Sans - Font Weight 400
-
-font-family: 'Roboto Slab', serif;
-font-family: 'Open Sans', sans-serif;
-*/
