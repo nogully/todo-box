@@ -14,9 +14,11 @@
           <input id="title-input" type="text" placeholder="Title" aria-label="Enter Idea Title">
           <textarea id="idea-input" placeholder="Body" aria-label="Enter Idea"></textarea>
           <button type="submit" class="save-button" disabled>save</button>
-      </div>
-          <input type="search" name="search-box" id="search-box" placeholder="Search" aria-label="Search Existing Ideas">
         </form>
+      </div>
+      <form>
+        <input type="search" name="search-box" id="search-box" placeholder="Search" aria-label="Search Existing Ideas">
+      </form>
     </main>
     <section class="idea-card-wrap">
     </section>
@@ -25,19 +27,3 @@
     <script src="scripts.js" type="text/javascript"></script>
   </body>
 </html>
-
-<!--
-<article class="idea-card">
-  <h1 class="user-idea">${titleInput}</h1>
-    <label for="delete-button" hidden></label>
-  <button id="delete-button"></button>
-  <p class="user-idea-details">${ideaInput}</p>
-    <label for="upvote-button" hidden></label>
-  <button id="upvote-button"></button>
-    <label for="downvote-button" hidden></label>
-  <button id="downvote-button"></button>
-  <h2>quality: 
-    <span class="rating">swill</span></h2>
-    <hr>
-  </article>
--->
