@@ -1,5 +1,5 @@
 var ratingArray = ['Swill', 'Plausible', 'Genius'];
-var IdeaCard = function(title, idea, id, quality) {
+var IdeaCard = function(title, idea, id) {
   this.title = title;
   this.idea = idea;
   this.id = id;
@@ -49,40 +49,39 @@ $(document).ready(function() {
   for (let i = 0; i < localStorage.length; i++) {
   var retrievedObject = localStorage.getItem(localStorage.key(i));
   var parsedObject = JSON.parse(retrievedObject);
-  $('.idea-card-wrap').prepend(`<article id="${parsedObject.id}" class="idea-card">
-    <h1 class="user-idea" contenteditable="true">${parsedObject.title}</h1>
-    <button class="delete-button" aria-label="Delete Button"></button>
-    <p class="user-idea-details" contenteditable="true">${parsedObject.idea}</p>
-    <button class="upvote-button" aria-label="upvote button"></button>
-    <button class="downvote-button" aria-label="downvote button"></button>
-    <h2>quality: <span class="rating">${ratingArray[parsedObject.counter]}</span></h2>
-    <hr>
-    </article>`);
+  createCard(parsedObject.id, parsedObject.title, parsedObject.idea, parsedObject.counter);
   };
 });
+
 
 $('.save-button').on('click', function(event) {
   event.preventDefault();
   var titleInput = $('#title-input').val();
   var ideaInput = $('#idea-input').val();
   var dateNow = Date.now();
-  $('.idea-card-wrap').prepend(`<article id="${dateNow}" class="idea-card">
-    <h1 class="user-idea" contenteditable="true">${titleInput}</h1>
-    <button class="delete-button" aria-label="Delete Button"></button>
-    <p class="user-idea-details" contenteditable="true">${ideaInput}</p>
-    <button class="upvote-button" aria-label="upvote button"></button>
-    <button class="downvote-button" aria-label="downvote button"></button>
-    <h2>quality: <span class="rating">Swill</span></h2>
-    <hr>
-    </article>`);
-  // ask about this
+  createCard(dateNow, titleInput, ideaInput);
   $('form')[0].reset();
-  // It works, but is it wrong?
   disableSaveButton();
+  sendCardToLocalStorage(titleInput, ideaInput, dateNow);
+});
+
+function createCard(id,title,idea,counter = 0){
+  $('.idea-card-wrap').prepend(`<article id="${id}" class="idea-card">
+  <h1 class="user-idea" contenteditable="true">${title}</h1>
+  <button class="delete-button" aria-label="Delete Button"></button>
+  <p class="user-idea-details" contenteditable="true">${idea}</p>
+  <button class="upvote-button" aria-label="upvote button"></button>
+  <button class="downvote-button" aria-label="downvote button"></button>
+  <h2>quality: <span class="rating">${ratingArray[counter]}</span></h2>
+  <hr>
+  </article>`);
+};
+
+function sendCardToLocalStorage(titleInput, ideaInput, dateNow){
   var ideaCard = new IdeaCard(titleInput, ideaInput, dateNow);
   var stringIdeaCard = JSON.stringify(ideaCard);
   localStorage.setItem(dateNow, stringIdeaCard);
-});
+};
 
 $('.idea-card-wrap').on('click', '.delete-button', function(event) {
   deleteCard(event);
@@ -140,3 +139,59 @@ $(window).on('keydown', function() {
     disableSaveButton();
   };
 });
+
+function arrayOfLocalStorage() {
+  var newArray = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    var retrievedObject = localStorage.getItem(localStorage.key(i));
+    var parsedObject = JSON.parse(retrievedObject);
+    newArray.push(parsedObject);
+  };
+  runSearch(newArray);
+};
+
+
+
+function runSearch(newArray) {
+  var searchInput = $('#search-box').val().toUpperCase()
+  var searchedArray = newArray.filter(function(card) {
+    return card.title.toUpperCase().includes(searchInput) || card.idea.toUpperCase().includes(searchInput);
+  });
+  printSearchResults(searchedArray);
+};
+
+function printSearchResults(searchedArray) {
+  searchedArray.forEach(function(result){
+    createCard(result.id,result.title,result.idea,result.counter);
+  });
+};
+      
+
+    // var titleSearchResult = value.title.search($('#search-box').val()) !== -1;
+    // var ideaSearchResult = value.idea.search($('#search-box').val()) !== -1;
+    // searchFilterDisplay(titleSearchResult,ideaSearchResult,newArray);
+// function searchFilterDisplay(titleSearchResult,ideaSearchResult,newArray) {
+//   console.log(newArray)
+//   for (var i = 0; i < newArray.length; i++){
+//   // newArray.forEach(function(ideaCard, index){
+//     if (titleSearchResult === false && ideaSearchResult === false) {
+//       newArray[0].searchResult = false;
+//       // ideaCard.css('display', 'none');
+//     } else {
+//       newArray[0].searchResult = true;
+//     };
+//   };
+
+// };
+
+$('#search-box').on('keyup', function(){
+  $('article').remove();
+  arrayOfLocalStorage();
+  // searchByTitle();
+})
+// function searchBar () {
+// }
+
+
+
+
