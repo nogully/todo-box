@@ -1,11 +1,11 @@
 $(document).ready(populateExistingCards);
 $('.save-button').on('click', submitCard);
-$('.idea-card-wrap').on('click', '.delete-button', deleteCard);
-$('.idea-card-wrap').on('blur', 'p', persistTextEdit);
-$('.idea-card-wrap').on('blur', 'h1', persistTitleEdit);
-$(window).on('keydown', enableDisableButton);
-$('.idea-card-wrap').on('click', '.upvote-button', upvoteValue);
-$('.idea-card-wrap').on('click', '.downvote-button', downvoteValue); 
+$('.card-wrap').on('click', '.delete-button', deleteCard);
+$('.card-wrap').on('blur', 'p', persistTextEdit);
+$('.card-wrap').on('blur', 'h1', persistTitleEdit);
+$(window).on('keyup', enableDisableButton);
+$('.card-wrap').on('click', '.upvote-button', upvoteValue);
+$('.card-wrap').on('click', '.downvote-button', downvoteValue); 
 $('#search-box').on('keyup', searchCards);
 
 function searchCards() {
@@ -13,9 +13,9 @@ function searchCards() {
   arrayOfLocalStorage();
 };
 
-function CardObject (title, idea, id) {
+function CardObject (title, body, id) {
   this.title = title;
-  this.idea = idea;
+  this.body = body;
   this.id = id;
   this.counter = 0;
 };
@@ -25,19 +25,19 @@ function populateExistingCards () {
   for (let i = 0; i < localStorage.length; i++) {
   var retrievedObject = localStorage.getItem(localStorage.key(i));
   var parsedObject = JSON.parse(retrievedObject);
-  createCard(parsedObject.id, parsedObject.title, parsedObject.idea, parsedObject.counter);
+  createCard(parsedObject.id, parsedObject.title, parsedObject.body, parsedObject.counter);
   };
 };
 
 function submitCard() {
    event.preventDefault();
   var titleInput = $('#title-input').val();
-  var ideaInput = $('#idea-input').val();
+  var bodyInput = $('#body-input').val();
   var dateNow = Date.now();
-  createCard(dateNow, titleInput, ideaInput);
+  createCard(dateNow, titleInput, bodyInput);
   $('form')[0].reset();
   disableSaveButton();
-  sendCardToLocalStorage(titleInput, ideaInput, dateNow);
+  sendCardToLocalStorage(titleInput, bodyInput, dateNow);
 };
 
 function arrayOfLocalStorage() {
@@ -54,23 +54,23 @@ function arrayOfLocalStorage() {
 function runSearch(newArray) {
   var searchInput = $('#search-box').val().toUpperCase();
   var searchedArray = newArray.filter(function(card) {
-    return card.title.toUpperCase().includes(searchInput) || card.idea.toUpperCase().includes(searchInput);
+    return card.title.toUpperCase().includes(searchInput) || card.body.toUpperCase().includes(searchInput);
   });
   printSearchResults(searchedArray);
 };
 
 function printSearchResults(searchedArray) {
   searchedArray.forEach(function(result) {
-    createCard(result.id,result.title,result.idea,result.counter);
+    createCard(result.id,result.title,result.body,result.counter);
   });
 };
 
-function createCard(id,title,idea,counter = 0) {
+function createCard(id,title,body,counter = 0) {
   var ratingArray = ['swill', 'plausible', 'genius'];
-  $('.idea-card-wrap').prepend(`<article id="${id}" class="idea-card">
-  <h1 class="user-idea" contenteditable="true">${title}</h1>
+  $('.card-wrap').prepend(`<article id="${id}" class="card-article">
+  <h1 class="user-title" contenteditable="true">${title}</h1>
   <button class="delete-button" aria-label="Delete Button"></button>
-  <p class="user-idea-details" contenteditable="true">${idea}</p>
+  <p class="user-body" contenteditable="true">${body}</p>
   <button class="upvote-button" aria-label="upvote button"></button>
   <button class="downvote-button" aria-label="downvote button"></button>
   <h2>quality: <span class="rating">${ratingArray[counter]}</span></h2>
@@ -99,7 +99,7 @@ function persistTextEdit(event) {
   var newText = parentArticle.children('p').text();
   var objectFromLocal = localStorage.getItem(id);
   var object = JSON.parse(objectFromLocal);
-  object.idea = newText;
+  object.body = newText;
   var objectString = JSON.stringify(object);
   localStorage.setItem(id, objectString);
 };
@@ -116,14 +116,14 @@ function persistTitleEdit(event) {
 };
 
 
-function sendCardToLocalStorage(titleInput, ideaInput, dateNow){
-  var cardObject = new CardObject(titleInput, ideaInput, dateNow);
+function sendCardToLocalStorage(titleInput, bodyInput, dateNow){
+  var cardObject = new CardObject(titleInput, bodyInput, dateNow);
   var stringCardObject = JSON.stringify(cardObject);
   localStorage.setItem(dateNow, stringCardObject);
 };
 
 function enableDisableButton() {
-  if (($('#title-input').val() !== '') && ($('#idea-input').val() !== '')) {
+  if (($('#title-input').val() !== '') && ($('#body-input').val() !== '')) {
     enableSaveButton();
   } 
   else { disableSaveButton() }

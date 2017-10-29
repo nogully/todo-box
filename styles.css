@@ -15,6 +15,10 @@ main {
   width: 100%;
 }
 
+.card-wrap, .input-wrap {
+  padding: 0px;
+}
+
 /*Input Area Styling*/
 
 h1 {
@@ -65,11 +69,8 @@ p:focus {
   outline: 0;
 }
 
-.idea-input-wrap {
-  padding: 0px;
-}
 
-.blue-background {
+header {
   background-color: #E5F3F2;
   padding: 30px 0px 15px;
 }
@@ -103,13 +104,13 @@ p:focus {
 
 /*Idea Card Section Styling*/
 
-.idea-card-wrap {
+.card-wrap {
   margin: auto;
   max-width: 750px;
   padding: 20px;
 }
 
-.idea-card-wrap input {
+.card-wrap input {
   border: 1px solid #D1D3D4;
   color: #6D6E71;
   font-size: 1em;
@@ -120,11 +121,11 @@ p:focus {
   width: 93%;
 }
 
-.idea-card-wrap input:focus {
+.card-wrap input:focus {
   outline: none;
 }
 
-.idea-card-wrap input::placeholder {
+.card-wrap input::placeholder {
   color: #cccccc;
   font-size: 1em;
   font-weight: bold;
@@ -132,22 +133,22 @@ p:focus {
 
 /*Idea Card Styling*/
 
-.idea-card {
+.card-article {
   margin: auto;
   position: relative;
   width: 94%;
 }
 
-.idea-card h1 {
+.card-article h1 {
   font-size: 1.5em;
 }
 
-.idea-card h2 {
+.card-article h2 {
   font-size: 1em;
 }
 
-.idea-card h1,
-.idea-card h2 {
+.card-article h1,
+.card-article h2 {
   color: #6D6E71;
   display: inline-block;
   font-family: 'Roboto Slab', serif;
@@ -155,13 +156,13 @@ p:focus {
   margin: 0px;
 }
 
-.idea-card .rating,
-.idea-card p {
+.card-article .rating,
+.card-article p {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
 }
 
-.idea-card p {
+.card-article p {
   color: #939598;
   font-size: 1em;
   margin: 15px 0px;
@@ -169,14 +170,14 @@ p:focus {
   overflow-y: scroll;
 }
 
-.idea-card hr {
+.card-article hr {
   border: 1px solid #D1D3D4;
   margin: 20px 0;
 }
 
 /*Button Styling*/
 
-.idea-card button {
+.card-article button {
   border: none;
   cursor: pointer;
   height: 30px;
@@ -185,29 +186,29 @@ p:focus {
   width: 30px;
 }
 
-.idea-card .delete-button {
+.card-article .delete-button {
   background: url(images/delete.svg) no-repeat;
   position: absolute;
   right: -5px;
 }
 
-.idea-card .delete-button:hover {
+.card-article .delete-button:hover {
   background: url(images/delete-hover.svg) no-repeat;
 }
 
-.idea-card .upvote-button {
+.card-article .upvote-button {
   background: url(images/upvote.svg) no-repeat;
 }
 
-.idea-card .upvote-button:hover {
+.card-article .upvote-button:hover {
   background: url(images/upvote-hover.svg) no-repeat;
 }
 
-.idea-card .downvote-button {
+.card-article .downvote-button {
   background: url(images/downvote.svg) no-repeat;
 }
 
-.idea-card .downvote-button:hover {
+.card-article .downvote-button:hover {
   background: url(images/downvote-hover.svg) no-repeat;
 }
 
@@ -230,7 +231,7 @@ p:focus {
     font-size: 5em;
   }
 
-  .idea-card {
+  .card-article {
     width: 100%;
   }
 }
