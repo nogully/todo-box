@@ -1,21 +1,25 @@
-var IdeaCard = function(title, idea, id) {
+$(document).ready(populateExistingCards);
+$('.save-button').on('click', submitCard)
+
+function CardObject (title, idea, id) {
   this.title = title;
   this.idea = idea;
   this.id = id;
   this.counter = 0;
 };
-var ratingArray = ['Swill', 'Plausible', 'Genius'];
+var ratingArray = ['swill', 'plausible', 'genius'];
 
-$(document).ready(function() {
+
+function populateExistingCards () {
   for (let i = 0; i < localStorage.length; i++) {
   var retrievedObject = localStorage.getItem(localStorage.key(i));
   var parsedObject = JSON.parse(retrievedObject);
   createCard(parsedObject.id, parsedObject.title, parsedObject.idea, parsedObject.counter);
   };
-});
+};
 
-$('.save-button').on('click', function(event) {
-  event.preventDefault();
+function submitCard() {
+   event.preventDefault();
   var titleInput = $('#title-input').val();
   var ideaInput = $('#idea-input').val();
   var dateNow = Date.now();
@@ -23,11 +27,15 @@ $('.save-button').on('click', function(event) {
   $('form')[0].reset();
   disableSaveButton();
   sendCardToLocalStorage(titleInput, ideaInput, dateNow);
-});
+};
+ 
+
+// function submitCard() 
 
 $(window).on('keydown', function() {
   if (($('#title-input').val() !== '') && ($('#idea-input').val() !== '')) {
     enableSaveButton();
+    console.log('hi');
   } else {
     disableSaveButton();
   };
@@ -154,7 +162,7 @@ function runSearch(newArray) {
 };
 
 function sendCardToLocalStorage(titleInput, ideaInput, dateNow){
-  var ideaCard = new IdeaCard(titleInput, ideaInput, dateNow);
-  var stringIdeaCard = JSON.stringify(ideaCard);
-  localStorage.setItem(dateNow, stringIdeaCard);
+  var cardObject = new CardObject(titleInput, ideaInput, dateNow);
+  var stringCardObject = JSON.stringify(cardObject);
+  localStorage.setItem(dateNow, stringCardObject);
 };
