@@ -20,24 +20,22 @@ function CardObject (title, body, id) {
   this.counter = 0;
 };
 
-function populateExistingCards () {
+function populateExistingCards() {
   var ratingArray = ['swill', 'plausible', 'genius'];
   for (let i = 0; i < localStorage.length; i++) {
   var retrievedObject = localStorage.getItem(localStorage.key(i));
   var parsedObject = JSON.parse(retrievedObject);
-  createCard(parsedObject.id, parsedObject.title, parsedObject.body, parsedObject.counter);
+  createCard(parsedObject);
   };
 };
 
 function submitCard() {
-   event.preventDefault();
-  var titleInput = $('#title-input').val();
-  var bodyInput = $('#body-input').val();
-  var dateNow = Date.now();
-  createCard(dateNow, titleInput, bodyInput);
+  event.preventDefault();
+  var cardObject = new CardObject($('#title-input').val(), $('#body-input').val(), Date.now())
+  createCard(cardObject);
   $('form')[0].reset();
   disableSaveButton();
-  sendCardToLocalStorage(titleInput, bodyInput, dateNow);
+  sendCardToLocalStorage(cardObject);
 };
 
 function arrayOfLocalStorage() {
@@ -65,18 +63,18 @@ function printSearchResults(searchedArray) {
   });
 };
 
-function createCard(id,title,body,counter = 0) {
+function createCard(object){
   var ratingArray = ['swill', 'plausible', 'genius'];
-  $('.card-wrap').prepend(`<article id="${id}" class="card-article">
-  <h1 class="user-title" contenteditable="true">${title}</h1>
-  <button class="delete-button" aria-label="Delete Button"></button>
-  <p class="user-body" contenteditable="true">${body}</p>
-  <button class="upvote-button" aria-label="upvote button"></button>
-  <button class="downvote-button" aria-label="downvote button"></button>
-  <h2>quality: <span class="rating">${ratingArray[counter]}</span></h2>
-  <hr>
-  </article>`);
-};
+  $('.card-wrap').prepend(`<article id="${object.id}" class="card-article">
+   <h1 class="user-title" contenteditable="true">${object.title}</h1>
+   <button class="delete-button" aria-label="Delete Button"></button>
+   <p class="user-body" contenteditable="true">${object.body}</p>
+   <button class="upvote-button" aria-label="upvote button"></button>
+   <button class="downvote-button" aria-label="downvote button"></button>
+   <h2>quality: <span class="rating">${ratingArray[object.counter]}</span></h2>
+   <hr>
+   </article>`);
+}
 
 function deleteCard(event) {
   var parentArticle = $(event.target).closest('article');
@@ -115,11 +113,9 @@ function persistTitleEdit(event) {
   localStorage.setItem(id, objectString);
 };
 
-
-function sendCardToLocalStorage(titleInput, bodyInput, dateNow){
-  var cardObject = new CardObject(titleInput, bodyInput, dateNow);
+function sendCardToLocalStorage(cardObject){
   var stringCardObject = JSON.stringify(cardObject);
-  localStorage.setItem(dateNow, stringCardObject);
+  localStorage.setItem(cardObject.id, stringCardObject);
 };
 
 function enableDisableButton() {
