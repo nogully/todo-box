@@ -7,8 +7,6 @@ $('.card-wrap').on('click', '.upvote-button', upvoteValue);
 $('.card-wrap').on('click', '.downvote-button', downvoteValue); 
 $('#search-box').on('keyup', searchCards);
 
-
-
 function CardObject (title, body, id) {
   this.title = title;
   this.body = body;
@@ -45,21 +43,23 @@ function arrayOfLocalStorage() {
     var retrievedObject = localStorage.getItem(localStorage.key(i));
     var parsedObject = JSON.parse(retrievedObject);
     newArray.push(parsedObject);
-    runSearch(newArray);
   };
+  runSearch(newArray);
 };
 
 function runSearch(newArray) {
   var searchInput = $('#search-box').val().toUpperCase();
-  var searchedArray = newArray.filter(function(card) {
-    return card.title.toUpperCase().includes(searchInput) || card.body.toUpperCase().includes(searchInput);
+  var searchedArray = newArray.filter(function(object) {
+    var upperCaseObjectBody = object['body'].toUpperCase();
+    var upperCaseObjectTitle = object['title'].toUpperCase();
+    return upperCaseObjectBody.includes(searchInput) || upperCaseObjectTitle.includes(searchInput);
   });
   printSearchResults(searchedArray);
 };
 
 function printSearchResults(searchedArray) {
   searchedArray.forEach(function(result) {
-    createCard(result.id,result.title,result.body,result.counter);
+    createCard(result);
   });
 };
 
@@ -90,6 +90,13 @@ function enableSaveButton() {
   $('.save-button').removeAttr('disabled');
 };
 
+function enableDisableButton() {
+  if (($('#title-input').val() !== '') && ($('#body-input').val() !== '')) {
+    enableSaveButton();
+  } 
+  else { disableSaveButton() }
+};
+
 function persistTextEdit(event) {
   var id = $(event.target).closest('article').prop('id');
   var newBody = $(event.target).closest('article').children('p').text();
@@ -100,23 +107,16 @@ function persistTextEdit(event) {
   sendCardToLocalStorage(cardObject);
 };
 
-function sendCardToLocalStorage(cardObject){
-  var stringCardObject = JSON.stringify(cardObject);
-  localStorage.setItem(cardObject.id, stringCardObject);
-};
-
-function enableDisableButton() {
-  if (($('#title-input').val() !== '') && ($('#body-input').val() !== '')) {
-    enableSaveButton();
-  } 
-  else { disableSaveButton() }
-};
-
 function getObjectAndParseIt(id) {
   var jsonObject = localStorage.getItem(id);
   var parsedObject = JSON.parse(jsonObject);
   return parsedObject;
 }
+
+function sendCardToLocalStorage(cardObject){
+  var stringCardObject = JSON.stringify(cardObject);
+  localStorage.setItem(cardObject.id, stringCardObject);
+};
 
 function upvoteValue() {
   var ratingArray = ['swill', 'plausible', 'genius'];
