@@ -2,6 +2,7 @@ $(document).ready(populateExistingCards);
 $('.save-button').on('click', submitCard);
 $('.card-wrap').on('click', '.delete-button', deleteCard);
 $('.card-wrap').on('blur', 'p, h1', persistTextEdit);
+$('.card-wrap').on('keypress', 'p, h1', enterKeyPersistEdit);
 $(window).on('keyup', enableDisableButton);
 $('.card-wrap').on('click', '.upvote-button', upvoteValue);
 $('.card-wrap').on('click', '.downvote-button', downvoteValue); 
@@ -96,6 +97,14 @@ function enableDisableButton() {
   } 
   else { disableSaveButton() }
 };
+
+function enterKeyPersistEdit(){
+  if (13 == event.keyCode) {
+    event.preventDefault();
+    $('p, h1').blur();
+    persistTextEdit();
+  }
+}
 
 function persistTextEdit(event) {
   var id = $(event.target).closest('article').prop('id');
