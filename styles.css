@@ -29,6 +29,9 @@ h1 {
   text-align: center;
 }
 
+
+
+
 h1 > span {
   color: #3f51b5;
 }
@@ -131,7 +134,7 @@ header {
   font-weight: bold;
 }
 
-/*Idea Card Styling*/
+/*Card Styling*/
 
 .card-article {
   margin: auto;
@@ -175,6 +178,7 @@ header {
   margin: 20px 0;
 }
 
+
 /*Button Styling*/
 
 .card-article button {
@@ -212,6 +216,12 @@ header {
   background: url(images/downvote-hover.svg) no-repeat;
 }
 
+/*Completed Task*/
+
+.greyed-out-text {
+  opacity: .5;
+}
+
 /*Media Queries*/
 
 @media screen and (min-width: 650px) {
@@ -234,4 +244,7 @@ header {
   .card-article {
     width: 100%;
   }
+
+
 }
+
