@@ -7,6 +7,8 @@ $(window).on('keyup', enableDisableButton);
 $('.card-wrap').on('click', '.upvote-button', upvoteValue);
 $('.card-wrap').on('click', '.downvote-button', downvoteValue); 
 $('#search-box').on('keyup', searchCards);
+$('.card-wrap').on('click', '#checkbox', completeTask)
+
 
 function CardObject (title, body, id) {
   this.title = title;
@@ -66,14 +68,21 @@ function printSearchResults(searchedArray) {
 
 function createCard(object){
   var ratingArray = ['swill', 'plausible', 'genius'];
-  $('.card-wrap').prepend(`<article id="${object.id}" class="card-article">
-   <h1 class="user-title" contenteditable="true">${object.title}</h1>
-   <button class="delete-button" aria-label="Delete Button"></button>
-   <p class="user-body" contenteditable="true">${object.body}</p>
-   <button class="upvote-button" aria-label="upvote button"></button>
-   <button class="downvote-button" aria-label="downvote button"></button>
-   <h2>quality: <span class="rating">${ratingArray[object.counter]}</span></h2>
-   <hr></article>`);
+  $('.card-wrap').prepend(`
+    <article id="${object.id}" class="card-article">
+      <h1 class="user-title" contenteditable="true">${object.title}</h1>
+      <button class="delete-button" aria-label="Delete Button"></button>
+      <p class="user-body" contenteditable="true">${object.body}</p>
+      <button class="upvote-button" aria-label="upvote button"></button>
+      <button class="downvote-button" aria-label="downvote button"></button>
+      <h2>quality: <span class="rating">${ratingArray[object.counter]}</span></h2>
+      <label class="completed-box" for="checkbox">Completed</label><input id="checkbox" type="checkbox">
+      <hr>
+    </article>`);
+}
+
+function completeTask(event) {
+  $(event.target).siblings('p, h1, h2, label').toggleClass('greyed-out-text');
 }
 
 function deleteCard(event) {
