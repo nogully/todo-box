@@ -15,6 +15,7 @@ function CardObject (title, body, id) {
   this.body = body;
   this.id = id;
   this.counter = 0;
+  this.complete = false;
 };
 
 function populateExistingCards() {
@@ -82,7 +83,15 @@ function createCard(object){
 }
 
 function completeTask(event) {
+  var id = $(event.target).closest('article').prop('id');
+  var object = getObjectAndParseIt(id)
   $(event.target).siblings('p, h1, h2, label').toggleClass('greyed-out-text');
+  if ($(event.target).siblings('p').hasClass('greyed-out-text')){
+    object.complete = true;
+  } else {
+    object.complete = false;
+  }
+  sendCardToLocalStorage(object);
 }
 
 function deleteCard(event) {
