@@ -30,7 +30,7 @@ h1 {
 }
 
 h1 > span {
-  color: #00A79D;
+  color: #3f51b5;
 }
 
 input,
@@ -76,7 +76,7 @@ header {
 }
 
 .save-button {
-  background-color: #00A79D;
+  background-color: #3f51b5;
   border-style: none;
   color: #FFF;
   cursor: pointer;
@@ -90,7 +90,7 @@ header {
 }
 
 .save-button:hover {
-  background-color: #045E55;
+  background-color: #2196f3;
 }
 
 .save-button:disabled {
