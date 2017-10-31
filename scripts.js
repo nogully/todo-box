@@ -20,7 +20,7 @@ function CardObject (title, body, id) {
 };
 
 function populateExistingCards() {
-  var ratingArray = ['swill', 'plausible', 'genius'];
+  var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
   for (let i = 0; i < localStorage.length; i++) {
     var retrievedObject = localStorage.getItem(localStorage.key(i));
     var parsedObject = JSON.parse(retrievedObject);
@@ -71,7 +71,7 @@ function printSearchResults(searchedArray) {
 };
 
 function createCard(object){
-  var ratingArray = ['swill', 'plausible', 'genius'];
+   var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
   if (object.complete === true){
     var complete = 'checked';
     var textColor = ' greyed-out-text';
@@ -83,7 +83,7 @@ function createCard(object){
       <p class="user-body${textColor}" contenteditable="true">${object.body}</p>
       <button class="upvote-button" aria-label="upvote button"></button>
       <button class="downvote-button" aria-label="downvote button"></button>
-      <h2>quality: <span class="rating">${ratingArray[object.counter]}</span></h2>
+      <h2>priority: <span class="rating">${ratingArray[object.counter]}</span></h2>
       <label class="completed-box" for="checkbox">Completed</label>
       <input id="checkbox" type="checkbox" ${complete}>
       <hr>
@@ -154,9 +154,9 @@ function sendCardToLocalStorage(cardObject){
 };
 
 function upvoteValue() {
-  var ratingArray = ['swill', 'plausible', 'genius'];
+   var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
   var parsedObject = getObjectAndParseIt($(this).parent('article').attr('id'));
-  if (parsedObject.counter < 2){
+  if (parsedObject.counter < 4){
     parsedObject.counter++;
     $(this).siblings('h2').find('.rating').text(ratingArray[parsedObject.counter]);
     sendCardToLocalStorage(parsedObject);
@@ -164,9 +164,9 @@ function upvoteValue() {
 };
 
 function downvoteValue() {
-  var ratingArray = ['swill', 'plausible', 'genius'];
+   var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
   var parsedObject = getObjectAndParseIt($(this).parent('article').attr('id'));
-  if (parsedObject.counter <= 2 && parsedObject.counter > 0) {
+  if (parsedObject.counter <= 4 && parsedObject.counter > 0) {
     parsedObject.counter--;
     $(this).siblings('h2').find('.rating').text(ratingArray[parsedObject.counter]);
     sendCardToLocalStorage(parsedObject);
@@ -176,7 +176,7 @@ function downvoteValue() {
 function showCompleteTasks() {
   event.preventDefault();
   $('article').remove();
-  var ratingArray = ['swill', 'plausible', 'genius'];
+   var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
   for (let i = 0; i < localStorage.length; i++) {
     var retrievedObject = localStorage.getItem(localStorage.key(i));
     var parsedObject = JSON.parse(retrievedObject);
