@@ -78,7 +78,8 @@ header {
   padding: 30px 0px 15px;
 }
 
-.save-button {
+
+.save-button, .show-complete-button {
   background-color: #3f51b5;
   border-style: none;
   color: #FFF;
@@ -92,11 +93,11 @@ header {
   width: 88%;
 }
 
-.save-button:hover {
+.save-button:hover, .show-complete-button:hover {
   background-color: #2196f3;
 }
 
-.save-button:disabled {
+.save-button:disabled, .show-complete-button:disabled {
   background-color: #D1D2D4;
   cursor: auto;
 }

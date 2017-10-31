@@ -7,7 +7,8 @@ $(window).on('keyup', enableDisableButton);
 $('.card-wrap').on('click', '.upvote-button', upvoteValue);
 $('.card-wrap').on('click', '.downvote-button', downvoteValue); 
 $('#search-box').on('keyup', searchCards);
-$('.card-wrap').on('click', '#checkbox', completeTask)
+$('.card-wrap').on('click', '#checkbox', completeTask);
+$('.show-complete-button').on('click', showCompleteTasks);
 
 
 function CardObject (title, body, id) {
@@ -71,15 +72,20 @@ function printSearchResults(searchedArray) {
 
 function createCard(object){
   var ratingArray = ['swill', 'plausible', 'genius'];
+  if (object.complete === true){
+    var complete = 'checked';
+    var textColor = ' greyed-out-text';
+  }
   $('.card-wrap').prepend(`
     <article id="${object.id}" class="card-article">
-      <h1 class="user-title" contenteditable="true">${object.title}</h1>
+      <h1 class="user-title${textColor}" contenteditable="true">${object.title}</h1>
       <button class="delete-button" aria-label="Delete Button"></button>
-      <p class="user-body" contenteditable="true">${object.body}</p>
+      <p class="user-body${textColor}" contenteditable="true">${object.body}</p>
       <button class="upvote-button" aria-label="upvote button"></button>
       <button class="downvote-button" aria-label="downvote button"></button>
       <h2>quality: <span class="rating">${ratingArray[object.counter]}</span></h2>
-      <label class="completed-box" for="checkbox">Completed</label><input id="checkbox" type="checkbox">
+      <label class="completed-box" for="checkbox">Completed</label>
+      <input id="checkbox" type="checkbox" ${complete}>
       <hr>
     </article>`);
 }
@@ -88,7 +94,7 @@ function completeTask(event) {
   var id = $(event.target).closest('article').prop('id');
   var object = getObjectAndParseIt(id)
   $(event.target).siblings('p, h1, h2, label').toggleClass('greyed-out-text');
-  if ($(event.target).siblings('p').hasClass('greyed-out-text')){
+  if ($('input[type=checkbox]').prop('checked')){
     object.complete = true;
   } else {
     object.complete = false;
@@ -166,3 +172,16 @@ function downvoteValue() {
     sendCardToLocalStorage(parsedObject);
   };
 };
+
+function showCompleteTasks() {
+  event.preventDefault();
+  $('article').remove();
+  var ratingArray = ['swill', 'plausible', 'genius'];
+  for (let i = 0; i < localStorage.length; i++) {
+    var retrievedObject = localStorage.getItem(localStorage.key(i));
+    var parsedObject = JSON.parse(retrievedObject);
+    if (parsedObject.complete === true){
+      createCard(parsedObject);
+    } 
+  };
+}
