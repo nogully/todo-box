@@ -1,4 +1,6 @@
- $(document).ready(populateExistingCards);
+
+$(document).ready(tenCards);
+// $(document).ready(populateExistingCards);
 $('.save-button').on('click', submitCard);
 $('.card-wrap').on('click', '.delete-button', deleteCard);
 $('.card-wrap').on('blur', 'p, h1', persistTextEdit);
@@ -37,12 +39,33 @@ function submitCard() {
   $('form')[0].reset();
   disableSaveButton();
   sendCardToLocalStorage(cardObject);
+  $('article').remove();
+  tenCards();
 };
 
 function searchCards() {
   $('article').remove();
   arrayOfLocalStorage();
 };
+
+function createArray() {
+  var newArray = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    var retrievedObject = localStorage.getItem(localStorage.key(i));
+    var parsedObject = JSON.parse(retrievedObject);
+    newArray.push(parsedObject);
+  };
+  console.log(newArray);
+  return newArray;
+}
+
+function tenCards(){
+  var cardArray = createArray();
+  var tenObjectsArray = cardArray.slice(-10);
+  tenObjectsArray.forEach( function(object) {
+    createCard(object);
+  });  
+}
 
 function arrayOfLocalStorage() {
   var newArray = [];
