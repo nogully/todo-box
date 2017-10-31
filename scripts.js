@@ -11,6 +11,12 @@ $('.card-wrap').on('click', '.downvote-button', downvoteValue);
 $('#search-box').on('keyup', searchCards);
 $('.card-wrap').on('click', '#checkbox', completeTask);
 $('.show-complete-button').on('click', showCompleteTasks);
+$('.filter-none-btn').on('click', filterNoPriorityCards);
+$('.filter-low-btn').on('click', filterLowPriorityCards);
+$('.filter-normal-btn').on('click', filterNormalPriorityCards);
+$('.filter-high-btn').on('click', filterHighPriorityCards);
+$('.filter-critical-btn').on('click', filterCriticalPriorityCards);
+
 
 
 function CardObject (title, body, id) {
@@ -61,7 +67,6 @@ function createArray() {
     var parsedObject = JSON.parse(retrievedObject);
     newArray.push(parsedObject);
   };
-  console.log(newArray);
   return newArray;
 }
 
@@ -214,3 +219,59 @@ function showCompleteTasks() {
     } 
   };
 }
+
+function filterNoPriorityCards() {
+  event.preventDefault();
+  $('article').remove();
+  var arrayOfObjects = createArray()
+  arrayOfObjects.forEach(function(object){
+    if (object.counter === 0){
+      createCard(object);
+    }
+  });
+}
+
+function filterLowPriorityCards() {
+  event.preventDefault();
+  $('article').remove();
+  var arrayOfObjects = createArray()
+  arrayOfObjects.forEach(function(object){
+    if (object.counter === 1){
+      createCard(object);
+    }
+  });
+}
+
+function filterNormalPriorityCards() {
+  event.preventDefault();
+  $('article').remove();
+  var arrayOfObjects = createArray()
+  arrayOfObjects.forEach(function(object){
+    if (object.counter === 2){
+      createCard(object);
+    }
+  });
+}
+
+function filterHighPriorityCards() {
+  event.preventDefault();
+  $('article').remove();
+  var arrayOfObjects = createArray()
+  arrayOfObjects.forEach(function(object){
+    if (object.counter === 3){
+      createCard(object);
+    }
+  });
+}
+
+function filterCriticalPriorityCards() {
+  event.preventDefault();
+  $('article').remove();
+  var arrayOfObjects = createArray()
+  arrayOfObjects.forEach(function(object){
+    if (object.counter === 4){
+      createCard(object);
+    }
+  });
+}
+

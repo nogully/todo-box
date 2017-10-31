@@ -106,7 +106,7 @@ header {
   width: 88%;
 }
 
-/*Idea Card Section Styling*/
+/* Card Section Styling*/
 
 .card-wrap {
   margin: auto;
@@ -215,6 +215,10 @@ header {
 
 .card-article .downvote-button:hover {
   background: url(images/downvote-hover.svg) no-repeat;
+}
+
+.filter-btns {
+
 }
 
 /*Completed Task*/
