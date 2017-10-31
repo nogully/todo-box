@@ -1,4 +1,4 @@
-$(document).ready(populateExistingCards);
+ $(document).ready(populateExistingCards);
 $('.save-button').on('click', submitCard);
 $('.card-wrap').on('click', '.delete-button', deleteCard);
 $('.card-wrap').on('blur', 'p, h1', persistTextEdit);
@@ -21,9 +21,11 @@ function CardObject (title, body, id) {
 function populateExistingCards() {
   var ratingArray = ['swill', 'plausible', 'genius'];
   for (let i = 0; i < localStorage.length; i++) {
-  var retrievedObject = localStorage.getItem(localStorage.key(i));
-  var parsedObject = JSON.parse(retrievedObject);
-  createCard(parsedObject);
+    var retrievedObject = localStorage.getItem(localStorage.key(i));
+    var parsedObject = JSON.parse(retrievedObject);
+    if (parsedObject.complete === false){
+      createCard(parsedObject);
+    }
   };
 };
 
