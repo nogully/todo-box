@@ -1,6 +1,6 @@
 
 $(document).ready(tenCards);
-// $(document).ready(populateExistingCards);
+$('.show-all-cards').on('click', showAllCards);
 $('.save-button').on('click', submitCard);
 $('.card-wrap').on('click', '.delete-button', deleteCard);
 $('.card-wrap').on('blur', 'p, h1', persistTextEdit);
@@ -20,6 +20,12 @@ function CardObject (title, body, id) {
   this.counter = 0;
   this.complete = false;
 };
+
+function showAllCards(event) {
+  event.preventDefault();
+  $('article').remove();
+  populateExistingCards();
+} 
 
 function populateExistingCards() {
   var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
