@@ -29,9 +29,6 @@ h1 {
   text-align: center;
 }
 
-
-
-
 h1 > span {
   color: #3f51b5;
 }
@@ -74,12 +71,12 @@ p:focus {
 
 
 header {
-  background-color: #E5F3F2;
+  background-color: #EDF2F9;
   padding: 30px 0px 15px;
 }
 
 
-.save-button, .show-complete-button {
+.save-button {
   background-color: #3f51b5;
   border-style: none;
   color: #FFF;
@@ -91,6 +88,15 @@ header {
   margin: 2% auto 1%;
   max-width: 760px;
   width: 88%;
+}
+
+.button-div {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.show-complete-button {
 }
 
 .save-button:hover, .show-complete-button:hover {

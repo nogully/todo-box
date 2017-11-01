@@ -6,16 +6,11 @@ $('.card-wrap').on('click', '.delete-button', deleteCard);
 $('.card-wrap').on('blur', 'p, h1', persistTextEdit);
 $('.card-wrap').on('keypress', 'p, h1', enterKeyPersistEdit);
 $(window).on('keyup', enableDisableButton);
-$('.card-wrap').on('click', '.upvote-button', upvoteValue);
-$('.card-wrap').on('click', '.downvote-button', downvoteValue); 
+$('.card-wrap').on('click', '.upvote-button, .downvote-button', upvoteOrDownvote);
 $('#search-box').on('keyup', searchCards);
 $('.card-wrap').on('click', '#checkbox', completeTask);
 $('.show-complete-button').on('click', showCompleteTasks);
-$('.filter-none-btn').on('click', filterNoPriorityCards);
-$('.filter-low-btn').on('click', filterLowPriorityCards);
-$('.filter-normal-btn').on('click', filterNormalPriorityCards);
-$('.filter-high-btn').on('click', filterHighPriorityCards);
-$('.filter-critical-btn').on('click', filterCriticalPriorityCards);
+$('.filter').on('click', filterCards);
 
 
 
@@ -187,25 +182,15 @@ function sendCardToLocalStorage(cardObject){
   localStorage.setItem(cardObject.id, stringCardObject);
 };
 
-function upvoteValue() {
-   var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
-  var parsedObject = getObjectAndParseIt($(this).parent('article').attr('id'));
-  if (parsedObject.counter < 4){
-    parsedObject.counter++;
-    $(this).siblings('h2').find('.rating').text(ratingArray[parsedObject.counter]);
-    sendCardToLocalStorage(parsedObject);
-  }
-};
-
-function downvoteValue() {
-   var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
-  var parsedObject = getObjectAndParseIt($(this).parent('article').attr('id'));
-  if (parsedObject.counter <= 4 && parsedObject.counter > 0) {
-    parsedObject.counter--;
-    $(this).siblings('h2').find('.rating').text(ratingArray[parsedObject.counter]);
-    sendCardToLocalStorage(parsedObject);
-  };
-};
+function upvoteOrDownvote(e){
+  var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
+  var parsedObject = getObjectAndParseIt($(this).parent('article').attr('id')); 
+  e.target.className === 'upvote-button' ? parsedObject.counter++ : parsedObject.counter--;
+  if(parsedObject.counter > 4) {parsedObject.counter = 4;}
+  if(parsedObject.counter < 0) {parsedObject.counter = 0;}
+  $(this).siblings('h2').find('.rating').text(ratingArray[parsedObject.counter]);
+  sendCardToLocalStorage(parsedObject);
+}
 
 function showCompleteTasks() {
   event.preventDefault();
@@ -220,58 +205,15 @@ function showCompleteTasks() {
   };
 }
 
-function filterNoPriorityCards() {
-  event.preventDefault();
+function filterCards(e) {
+  e.preventDefault();
   $('article').remove();
-  var arrayOfObjects = createArray()
+  var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
+  var buttonIndex = ratingArray.indexOf(e.target.innerText);
+  var arrayOfObjects = createArray();
   arrayOfObjects.forEach(function(object){
-    if (object.counter === 0){
+    if (object.counter === buttonIndex){
       createCard(object);
     }
   });
 }
-
-function filterLowPriorityCards() {
-  event.preventDefault();
-  $('article').remove();
-  var arrayOfObjects = createArray()
-  arrayOfObjects.forEach(function(object){
-    if (object.counter === 1){
-      createCard(object);
-    }
-  });
-}
-
-function filterNormalPriorityCards() {
-  event.preventDefault();
-  $('article').remove();
-  var arrayOfObjects = createArray()
-  arrayOfObjects.forEach(function(object){
-    if (object.counter === 2){
-      createCard(object);
-    }
-  });
-}
-
-function filterHighPriorityCards() {
-  event.preventDefault();
-  $('article').remove();
-  var arrayOfObjects = createArray()
-  arrayOfObjects.forEach(function(object){
-    if (object.counter === 3){
-      createCard(object);
-    }
-  });
-}
-
-function filterCriticalPriorityCards() {
-  event.preventDefault();
-  $('article').remove();
-  var arrayOfObjects = createArray()
-  arrayOfObjects.forEach(function(object){
-    if (object.counter === 4){
-      createCard(object);
-    }
-  });
-}
-
