@@ -191,7 +191,7 @@ header {
 #checkbox {
   height: 23px;
   width: 23px;
-  margin: 0px;
+  margin: 0px 7px;
   float: right;
 }
 
@@ -263,6 +263,12 @@ label {
 
 /*Media Queries*/
 
+@media screen and (max-width: 480px){
+  label {
+    display: none;
+  }
+}
+
 @media screen and (min-width: 650px) {
   h1 {
     font-size: 3.3em;
@@ -283,7 +289,6 @@ label {
   .card-article {
     width: 100%;
   }
-
-
 }
+
 
