@@ -67,6 +67,9 @@ function createArray() {
 
 function tenCards(){
   var cardArray = createArray();
+  cardArray = cardArray.filter(function(object){
+    return object.complete === false;
+  });
   var tenObjectsArray = cardArray.slice(-10);
   tenObjectsArray.forEach( function(object) {
     createCard(object);
@@ -100,7 +103,7 @@ function printSearchResults(searchedArray) {
 };
 
 function createCard(object){
-   var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
+  var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
   if (object.complete === true){
     var complete = 'checked';
     var textColor = ' greyed-out-text';
@@ -112,7 +115,7 @@ function createCard(object){
       <p class="user-body${textColor}" contenteditable="true">${object.body}</p>
       <button class="upvote-button" aria-label="upvote button"></button>
       <button class="downvote-button" aria-label="downvote button"></button>
-      <h2 class="${textColor}"">priority: <span class="rating${textColor}">${ratingArray[object.counter]}</span></h2>
+      <h2 class="${textColor}"">priority: <span id="rating" class="${textColor}">${ratingArray[object.counter]}</span></h2>
       <label class="completed-box${textColor}" for="checkbox">Completed</label>
       <input id="checkbox" type="checkbox" ${complete}>
       <hr>
@@ -123,11 +126,10 @@ function completeTask(event) {
   var id = $(event.target).closest('article').prop('id');
   var object = getObjectAndParseIt(id)
   $(event.target).siblings('p, h1, h2, label').toggleClass('greyed-out-text');
+  this.setAttribute('checked', 'checked');
   if ($('input[type=checkbox]').prop('checked')){
     object.complete = true;
-  } else {
-    object.complete = false;
-  }
+  } else { object.complete = false; }
   sendCardToLocalStorage(object);
 }
 
@@ -188,7 +190,7 @@ function upvoteOrDownvote(e){
   e.target.className === 'upvote-button' ? parsedObject.counter++ : parsedObject.counter--;
   if(parsedObject.counter > 4) {parsedObject.counter = 4;}
   if(parsedObject.counter < 0) {parsedObject.counter = 0;}
-  $(this).siblings('h2').find('.rating').text(ratingArray[parsedObject.counter]);
+  $(this).siblings('h2').find('#rating').text(ratingArray[parsedObject.counter]);
   sendCardToLocalStorage(parsedObject);
 }
 
