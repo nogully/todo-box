@@ -13,6 +13,46 @@ $('.show-complete-button').on('click', showCompleteTasks);
 $('.filter').on('click', filterCards);
 
 
+function tenCards(){
+  var cardArray = createArray();
+  cardArray = cardArray.filter(function(object){
+    return object.complete === false;
+  });
+  var tenObjectsArray = cardArray.slice(-10);
+  tenObjectsArray.forEach( function(object) {
+    createCard(object);
+  });  
+}
+
+function createArray() {
+  var newArray = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    var retrievedObject = localStorage.getItem(localStorage.key(i));
+    var parsedObject = JSON.parse(retrievedObject);
+    newArray.push(parsedObject);
+  };
+  return newArray;
+}
+
+function createCard(object){
+  var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
+  if (object.complete === true){
+    var complete = 'checked';
+    var textColor = ' greyed-out-text';
+  }
+  $('.card-wrap').prepend(`
+    <article id="${object.id}" class="card-article">
+      <h1 class="user-title${textColor}" contenteditable="true">${object.title}</h1>
+      <button class="delete-button" aria-label="Delete Button"></button>
+      <p class="user-body${textColor}" contenteditable="true">${object.body}</p>
+      <button class="upvote-button" aria-label="upvote button"></button>
+      <button class="downvote-button" aria-label="downvote button"></button>
+      <h2 class="${textColor}"">priority: <span id="rating" class="${textColor}">${ratingArray[object.counter]}</span></h2>
+      <label class="completed-box${textColor}" for="checkbox">Completed</label>
+      <input id="checkbox" type="checkbox" ${complete}>
+      <hr>
+    </article>`);
+}
 
 function CardObject (title, body, id) {
   this.title = title;
@@ -50,31 +90,15 @@ function submitCard() {
   tenCards();
 };
 
+function sendCardToLocalStorage(cardObject){
+  var stringCardObject = JSON.stringify(cardObject);
+  localStorage.setItem(cardObject.id, stringCardObject);
+};
+
 function searchCards() {
   $('article').remove();
   arrayOfLocalStorage();
 };
-
-function createArray() {
-  var newArray = [];
-  for (let i = 0; i < localStorage.length; i++) {
-    var retrievedObject = localStorage.getItem(localStorage.key(i));
-    var parsedObject = JSON.parse(retrievedObject);
-    newArray.push(parsedObject);
-  };
-  return newArray;
-}
-
-function tenCards(){
-  var cardArray = createArray();
-  cardArray = cardArray.filter(function(object){
-    return object.complete === false;
-  });
-  var tenObjectsArray = cardArray.slice(-10);
-  tenObjectsArray.forEach( function(object) {
-    createCard(object);
-  });  
-}
 
 function arrayOfLocalStorage() {
   var newArray = [];
@@ -101,26 +125,6 @@ function printSearchResults(searchedArray) {
     createCard(result);
   });
 };
-
-function createCard(object){
-  var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
-  if (object.complete === true){
-    var complete = 'checked';
-    var textColor = ' greyed-out-text';
-  }
-  $('.card-wrap').prepend(`
-    <article id="${object.id}" class="card-article">
-      <h1 class="user-title${textColor}" contenteditable="true">${object.title}</h1>
-      <button class="delete-button" aria-label="Delete Button"></button>
-      <p class="user-body${textColor}" contenteditable="true">${object.body}</p>
-      <button class="upvote-button" aria-label="upvote button"></button>
-      <button class="downvote-button" aria-label="downvote button"></button>
-      <h2 class="${textColor}"">priority: <span id="rating" class="${textColor}">${ratingArray[object.counter]}</span></h2>
-      <label class="completed-box${textColor}" for="checkbox">Completed</label>
-      <input id="checkbox" type="checkbox" ${complete}>
-      <hr>
-    </article>`);
-}
 
 function completeTask(event) {
   var id = $(event.target).closest('article').prop('id');
@@ -178,11 +182,6 @@ function getObjectAndParseIt(id) {
   var parsedObject = JSON.parse(jsonObject);
   return parsedObject;
 }
-
-function sendCardToLocalStorage(cardObject){
-  var stringCardObject = JSON.stringify(cardObject);
-  localStorage.setItem(cardObject.id, stringCardObject);
-};
 
 function upvoteOrDownvote(e){
   var ratingArray = ['none', 'low', 'normal', 'high', 'critical'];
