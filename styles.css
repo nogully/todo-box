@@ -88,13 +88,6 @@ header {
   width: 88%;
 }
 
-.button-div {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
 .save-button:hover {
   background-color: #2196f3;
 }
@@ -102,6 +95,13 @@ header {
 .save-button:disabled {
   background-color: #D1D2D4;
   cursor: auto;
+}
+
+.button-div {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 #search-box {
@@ -116,6 +116,7 @@ header {
   padding: 20px;
 }
 
+/*Search Bar Styling*/
 .card-wrap input {
   border: 1px solid #D1D3D4;
   color: #6D6E71;
@@ -145,18 +146,10 @@ header {
 }
 
 .card-article h1 {
-  font-size: 1.5em;
-}
-
-.card-article h2 {
-  font-size: 1em;
-}
-
-.card-article h1,
-.card-article h2 {
   color: #6D6E71;
   display: inline-block;
   font-family: 'Roboto Slab', serif;
+  font-size: 1.5em;
   font-weight: 700;
   margin: 0px;
 }
@@ -180,6 +173,7 @@ header {
   margin: 20px 0;
 }
 
+/*Checkbox and Its Label*/
 #checkbox {
   height: 23px;
   width: 23px;
@@ -256,7 +250,7 @@ label {
 
 /*Media Queries*/
 @media(max-width: 430px) {
-  h2 {
+ .button-div h2 {
     display: none;
   }
 
@@ -269,6 +263,7 @@ label {
     margin: 5px;
   }
 }
+
 @media(max-width: 745px){
   .button-div {
     margin-left: 0%;
