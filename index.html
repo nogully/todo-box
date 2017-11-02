@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>2doBox</title>
+    <title>TaskBox</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab:700" rel="stylesheet">
     <link href="styles.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,15 +9,15 @@
   <body>
     <main class="input-wrap">
       <header>
-        <h1><span role="Title Logo">2do</span>box</h1>
+        <h1><span role="Title Logo">task</span>Box</h1>
         <form>
           <input id="title-input" type="text" placeholder="Title" aria-label="Enter Title">
           <textarea id="body-input" placeholder="Body" aria-label="Enter To-Do"></textarea>
           <button type="submit" class="save-button" disabled>save</button>
-          <div class="button-div">
-            <button type="submit" class="show-complete-button">show completed tasks</button>
-            <button type="submit" class="show-all-cards">show all todos</button>
-            <div class="filter-btns">Filter by:
+          <div class="button-div"><h2>Filter by:</h2>
+            <button type="submit" class="show-complete-button">completed tasks</button>
+            <button type="submit" class="show-all-cards ">all tasks</button>
+            <div class="filter-btns"><h2>Priority:</h2>
               <button type="submit" class="filter-none-btn filter">none</button>
               <button type="submit" class="filter-low-btn filter">low</button>
               <button type="submit" class="filter-normal-btn filter">normal</button>
