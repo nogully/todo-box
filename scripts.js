@@ -97,17 +97,7 @@ function sendCardToLocalStorage(cardObject){
 
 function searchCards() {
   $('article').remove();
-  arrayOfLocalStorage();
-};
-
-function arrayOfLocalStorage() {
-  var newArray = [];
-  for (let i = 0; i < localStorage.length; i++) {
-    var retrievedObject = localStorage.getItem(localStorage.key(i));
-    var parsedObject = JSON.parse(retrievedObject);
-    newArray.push(parsedObject);
-  };
-  runSearch(newArray);
+  runSearch(createArray());
 };
 
 function runSearch(newArray) {
