@@ -112,8 +112,8 @@ function createCard(object){
       <p class="user-body${textColor}" contenteditable="true">${object.body}</p>
       <button class="upvote-button" aria-label="upvote button"></button>
       <button class="downvote-button" aria-label="downvote button"></button>
-      <h2>priority: <span class="rating">${ratingArray[object.counter]}</span></h2>
-      <label class="completed-box" for="checkbox">Completed</label>
+      <h2 class="${textColor}"">priority: <span class="rating${textColor}">${ratingArray[object.counter]}</span></h2>
+      <label class="completed-box${textColor}" for="checkbox">Completed</label>
       <input id="checkbox" type="checkbox" ${complete}>
       <hr>
     </article>`);

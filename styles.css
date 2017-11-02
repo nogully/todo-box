@@ -20,7 +20,6 @@ main {
 }
 
 /*Input Area Styling*/
-
 h1 {
   color: #6D6E71;
   font-family: "Roboto Slab", serif;
@@ -31,6 +30,13 @@ h1 {
 
 h1 > span {
   color: #3f51b5;
+}
+
+h2 {
+  display: inline-block;
+  font-family: "Roboto Slab", serif;
+  color: #6D6E71;
+  font-size: 1em;
 }
 
 input,
@@ -94,16 +100,14 @@ header {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 
-.show-complete-button {
-}
-
-.save-button:hover, .show-complete-button:hover {
+.save-button:hover {
   background-color: #2196f3;
 }
 
-.save-button:disabled, .show-complete-button:disabled {
+.save-button:disabled {
   background-color: #D1D2D4;
   cursor: auto;
 }
@@ -112,8 +116,11 @@ header {
   width: 88%;
 }
 
-/* Card Section Styling*/
+.filter-btns {
+  margin-top: 15px;
+}
 
+/* Card Section Styling*/
 .card-wrap {
   margin: auto;
   max-width: 750px;
@@ -142,7 +149,6 @@ header {
 }
 
 /*Card Styling*/
-
 .card-article {
   margin: auto;
   position: relative;
@@ -185,6 +191,20 @@ header {
   margin: 20px 0;
 }
 
+#checkbox {
+  height: 23px;
+  width: 23px;
+  margin: 0px;
+  float: right;
+}
+
+label {
+  color: #6D6E71;
+  font-family: "Roboto Slab", serif;
+  font-weight: 700;
+  margin: 0px;
+  float: right;
+}
 
 /*Button Styling*/
 
@@ -223,8 +243,21 @@ header {
   background: url(images/downvote-hover.svg) no-repeat;
 }
 
-.filter-btns {
+.filter, .show-all-cards,
+.show-complete-button {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #3f51b5;
+  font-family: "Roboto Slab", serif;
+  font-size: 1rem;
+  margin: 0px 10px;
+  color: #3f51b5;
+}
 
+.filter:hover,.show-all-cards:hover,
+.show-complete-button:hover {
+  border-bottom: 2px solid #2196f3;
+  color: #2196f3;
 }
 
 /*Completed Task*/
